@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const StudentSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
   },
   email: {
     type: String,
@@ -31,6 +30,10 @@ const StudentSchema = new mongoose.Schema({
       type: Date
     }
   },
+  cart: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Course'
+  }],
   createdAt: {
     type: Date,
     default: Date.now
