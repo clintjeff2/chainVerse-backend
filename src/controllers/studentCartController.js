@@ -57,7 +57,43 @@ const addCartItem = async (req, res) => {
 };
 
 const updateCartItem = async (req, res) => {
-  res.send("updateCart");
+  try {
+    const { courseIds, action } = req.body;
+    const userId = req.user._id;
+    
+    if (!Array.isArray(courseIds) || !['add', 'remove'].includes(action)) {
+      return res.status(400).json({ message: 'Invalid input' });
+    }
+    
+    const validIds = courseIds.filter(id => mongoose.Types.ObjectId.isValid(id));
+    const existingCourses = await Course.find({ _id: { $in: validIds } }).select('_id').lean();
+    const existingIdsSet = new Set(existingCourses.map(c => c._id.toString()));
+    
+    let student = await Student.findById(userId);
+    if (!student) {
+      student = await createStudent(userId, req.user.email);
+    }
+    
+    if (action === 'add') {
+      for (const id of validIds) {
+        if (existingIdsSet.has(id) && !student.cart.includes(id)) {
+          student.cart.push(id);
+        }
+      }
+    } else if (action === 'remove') {
+      student.cart = student.cart.filter(id => !validIds.includes(id.toString()));
+    }
+    
+    await student.save();
+    await student.populate({
+      path: 'cart',
+      model: 'Course'
+    });
+    return res.status(200).json({ cart: student.cart });
+  } catch (error) {
+    console.error('Cart update error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 };
 
 const deleteCartItem = async (req, res) => {
