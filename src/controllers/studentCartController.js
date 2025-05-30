@@ -45,10 +45,11 @@ const addCartItem = async (req, res) => {
       student = await createStudent(user._id, user.email);
     }
     
-    if (!student.cart.includes(courseId)) {
-      student.cart.push(courseId);
-      student = await student.save();
-    }
+    await Student.updateOne(
+      { _id: student._id },
+      { $addToSet: { cart: courseId } }
+    );
+    student = await Student.findById(user._id).populate("cart");
     res.status(201).send(student.cart);
   } catch (error) {
     console.error('Error adding cart item:', error);
@@ -75,20 +76,18 @@ const updateCartItem = async (req, res) => {
     }
     
     if (action === 'add') {
-      for (const id of validIds) {
-        if (existingIdsSet.has(id) && !student.cart.includes(id)) {
-          student.cart.push(id);
-        }
-      }
+      await Student.updateOne(
+        { _id: student._id },
+        { $addToSet: { cart: { $each: [...existingIdsSet] } } }
+      );
     } else if (action === 'remove') {
-      student.cart = student.cart.filter(id => !validIds.includes(id.toString()));
+      await Student.updateOne(
+        { _id: student._id },
+        { $pull: { cart: { $in: [...existingIdsSet] } } }
+      );
     }
     
-    await student.save();
-    await student.populate({
-      path: 'cart',
-      model: 'Course'
-    });
+    student = await Student.findById(userId).populate("cart");
     return res.status(200).json({ cart: student.cart });
   } catch (error) {
     console.error('Cart update error:', error);
@@ -112,11 +111,12 @@ const deleteCartItem = async (req, res) => {
       return res.status(404).json({ message: 'Student not found' });
     }
     
-    student.cart = student.cart.filter(
-      (id) => id.toString() !== courseId
+    await Student.updateOne(
+      { _id: student._id },
+      { $pull: { cart: courseId } }
     );
     
-    await student.save();
+    student = await Student.findById(user._id).populate("cart");
     return res.send(student.cart);
     
   } catch (error) {
