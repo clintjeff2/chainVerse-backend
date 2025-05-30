@@ -21,46 +21,46 @@ const authLimiter = rateLimit({
 });
 
 // Tutor application routes
-router.post('/tutor/apply', applyLimiter, tutorController.submitTutorApplication);
+// router.post('/tutor/apply', applyLimiter, tutorController.submitTutorApplication);
 router.get('/admin/tutor-applications', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorController.getAllTutors);
 router.get('/admin/tutor-applications/:id', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorController.getTutorById);
-router.put('/admin/tutor-applications/:id/decision', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorController.approveRejectApplication);
+// router.put('/admin/tutor-applications/:id/decision', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorController.approveRejectApplication);
 
 // Tutor authentication routes
-router.post('/tutor/create', 
-  tutorValidator.validateTutorCreation, 
-  tutorValidator.validateResults, 
-  tutorController.createTutor
-);
+// router.post('/tutor/create', 
+//   tutorValidator.validateTutorCreation, 
+//   tutorValidator.validateResults, 
+//   tutorController.createTutor
+// );
 
-router.post('/tutor/verify-email', 
-  tutorValidator.validateEmailVerification, 
-  tutorValidator.validateResults, 
-  tutorController.verifyEmail
-);
+// router.post('/tutor/verify-email', 
+//   tutorValidator.validateEmailVerification, 
+//   tutorValidator.validateResults, 
+//   tutorController.verifyEmail
+// );
 
-router.post('/tutor/login', 
-  authLimiter,
-  tutorValidator.validateTutorLogin, 
-  tutorValidator.validateResults, 
-  tutorController.login
-);
+// router.post('/tutor/login', 
+//   authLimiter,
+//   tutorValidator.validateTutorLogin, 
+//   tutorValidator.validateResults, 
+//   tutorController.login
+// );
 
-router.post('/tutor/forget/password', 
-  authLimiter,
-  tutorValidator.validateForgotPassword, 
-  tutorValidator.validateResults, 
-  tutorController.forgotPassword
-);
+// router.post('/tutor/forget/password', 
+//   authLimiter,
+//   tutorValidator.validateForgotPassword, 
+//   tutorValidator.validateResults, 
+//   tutorController.forgotPassword
+// );
 
-router.post('/tutor/reset/password', 
-  authLimiter,
-  tutorValidator.validateResetPassword, 
-  tutorValidator.validateResults, 
-  tutorController.resetPassword
-);
+// router.post('/tutor/reset/password', 
+//   authLimiter,
+//   tutorValidator.validateResetPassword, 
+//   tutorValidator.validateResults, 
+//   tutorController.resetPassword
+// );
 
-router.post('/tutor/refresh-token', tutorController.refreshToken);
+// router.post('/tutor/refresh-token', tutorController.refreshToken);
 
 // Protected tutor routes
 // router.get('/tutor/profile', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorController.getProfile);
@@ -72,8 +72,8 @@ router.post('/tutor/refresh-token', tutorController.refreshToken);
 //   tutorController.updateProfile
 // );
 
-router.get('/tutor/courses/reports', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorReportController.getTutorCoursesReport);
-router.get('/tutor/courses/:courseId/reports', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorReportController.getCourseReport);
-router.get('/tutor/leaderboard', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorReportController.getTutorRankings);
+// router.get('/tutor/courses/reports', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorReportController.getTutorCoursesReport);
+// router.get('/tutor/courses/:courseId/reports', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorReportController.getCourseReport);
+// router.get('/tutor/leaderboard', tutorAuth.authenticateTutor, tutorAuth.tutorRoleCheck, tutorReportController.getTutorRankings);
 
 module.exports = router;
