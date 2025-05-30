@@ -9,6 +9,7 @@ const router = express.Router();
 const authRoutes = require('./authRoute');
 const courseRoutes = require('./courseRoute');
 const rateLimitRoutes = require('./rateLimitRoutes');
+const courseUpdateRoutes = require('./courseUpdateRoutes');
 
 router.use("/", tutorRoutes)
 router.use("/", subscriptionPlanRoutes)
@@ -19,5 +20,6 @@ router.use("/", pointsRoutes)
 router.use('/auth', authRoutes);
 router.use('/courses', courseRoutes);
 router.use('/rate-limit', rateLimitRoutes);
+router.use('/', courseUpdateRoutes);
 
 module.exports = router
