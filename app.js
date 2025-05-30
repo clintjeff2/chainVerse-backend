@@ -24,7 +24,7 @@ const { initScheduler } = require('./src/services/reportScheduler');
 const studyGroupRoutes = require("./src/routes/studyGroupRoutes");
 const sessionRoutes = require('./src/routes/sessionRoute');
 const guestCartRoutes = require('./src/routes/guestCartRoute');
-const cartRoutes = require('./src/routes/cartRoutes');
+const studentCartRoutes = require('./src/routes/studentCartRoutes');
 // const setupSwaggerDocs = require('./swagger');
 
 const dbConnection = require("./src/config/database/connection");
@@ -69,7 +69,7 @@ app.use('/admin/financial-aid', adminFinancialAidRoutes);
 app.use('/api', nftRoutes);
 app.use('/api', careerRoutes);
 app.use('/api', guestCartRoutes);
-app.use('/api', cartRoutes);
+app.use('/api', studentCartRoutes);
 
 app.get('/', (req, res) => {
 	res.send('Welcome to ChainVerse Academy');
