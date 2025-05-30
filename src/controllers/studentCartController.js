@@ -4,10 +4,6 @@ const mongoose = require("mongoose");
 const createStudent = require("../utils/createStudent");
 
 const getCartItems = async (req, res) => {
-  if (!req.user || !req.user._id) {
-    return res.status(401).json({ message: 'Unauthorized: Missing user.' });
-  }
-  
   try {
     const user = req.user;
     let student = await Student.findById(user._id)
@@ -28,10 +24,6 @@ const getCartItems = async (req, res) => {
 }
 
 const addCartItem = async (req, res) => {
-  if (!req.user || !req.user._id) {
-    return res.status(401).json({ message: 'Unauthorized: Missing user.' });
-  }
-  
   try {
     const user = req.user;
     const courseId = req.params.courseId;
@@ -69,10 +61,6 @@ const updateCartItem = async (req, res) => {
 };
 
 const deleteCartItem = async (req, res) => {
-  if (!req.user || !req.user._id) {
-    return res.status(401).json({ message: 'Unauthorized: Missing user.' });
-  }
-  
   try{
     const user = req.user;
     console.log(user);
