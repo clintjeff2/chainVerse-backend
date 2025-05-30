@@ -10,7 +10,7 @@ const {
 const { doHash, doCompare, doHmac, compareHmac } = require("../utils/hashing");
 const jwt = require("jsonwebtoken");
 const { sendEmail } = require("../utils/sendMail");
-const passport = require("../config/passport");
+const passport = require("../config/database/passport");
 const LoginLog = require("../models/loginsLog");
 
 const VERIFICATION_CODE_EXPIRY = 5 * 60 * 1000; // 5m

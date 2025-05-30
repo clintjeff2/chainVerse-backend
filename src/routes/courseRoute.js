@@ -14,5 +14,5 @@ router.post('/courses', isAdmin.ensureAdmin, courseController.createCourse);
 router.post('/:id/complete',  auth.authenticate, completeCourse);
 router.get('/:id/certificate',  auth.authenticate, getCertificate);
 router.post('/:id/mint-nft',  auth.authenticate, mintNft);
-router.get('/courses/public', publicRateLimitMiddleware, courseController.getPublicCourses);
+//router.get('/courses/public', publicRateLimitMiddleware, courseController.getPublicCourses);
 module.exports = router;

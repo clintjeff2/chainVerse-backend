@@ -3,6 +3,7 @@ const router = express.Router();
 const rateLimitController = require('../controllers/rateLimitController');
 const { authMiddleware } = require('../middlewares/authMiddleware');
 const { adminAuthorization } = require('../middlewares/adminAuthorization');
+const isAdmin = require('../middlewares/admin');
 
 /**
  * @swagger
@@ -55,7 +56,7 @@ router.get('/health', rateLimitController.healthCheck);
  *       500:
  *         description: Internal server error
  */
-router.get('/metrics', authMiddleware, adminAuthorization, rateLimitController.getMetrics);
+router.get('/metrics', authMiddleware, isAdmin.ensureAdmin, rateLimitController.getMetrics);
 
 /**
  * components:
@@ -224,7 +225,7 @@ router.get('/config', authMiddleware, rateLimitController.getConfig);
  *       500:
  *         description: Internal server error
  */
-router.put('/config', authMiddleware, adminAuthorization, rateLimitController.updateConfig);
+router.put('/config', authMiddleware,  isAdmin.ensureAdmin, rateLimitController.updateConfig);
 
 /**
  * @swagger
@@ -276,7 +277,7 @@ router.get('/status', rateLimitController.getStatus);
  *       500:
  *         description: Internal server error
  */
-router.get('/stats/:identifier', authMiddleware, adminAuthorization, rateLimitController.getStats);
+router.get('/stats/:identifier', authMiddleware,  isAdmin.ensureAdmin, rateLimitController.getStats);
 
 /**
  * @swagger
@@ -305,7 +306,7 @@ router.get('/stats/:identifier', authMiddleware, adminAuthorization, rateLimitCo
  *       500:
  *         description: Internal server error
  */
-router.delete('/clear/:identifier', authMiddleware, adminAuthorization, rateLimitController.clearRateLimit);
+router.delete('/clear/:identifier', authMiddleware,  isAdmin.ensureAdmin, rateLimitController.clearRateLimit);
 
 /**
  * @swagger
