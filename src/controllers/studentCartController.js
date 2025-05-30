@@ -17,7 +17,7 @@ const getCartItems = async (req, res) => {
       });
     
     if (!student) {
-      student = await createStudent(user._id, user.email);
+      await createStudent(user._id, user.email);
       return res.send({ message: "Cart is empty" });
     }
     return res.send(student.cart);
