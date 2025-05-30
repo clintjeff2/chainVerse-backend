@@ -1,4 +1,3 @@
-// swagger.js
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
@@ -24,6 +23,33 @@ const options = {
         },
       },
     },
+    headers: {
+        'X-RateLimit-Limit': {
+          description: 'The number of allowed requests in the current period',
+          schema: {
+            type: 'integer'
+          }
+        },
+        'X-RateLimit-Remaining': {
+          description: 'The number of remaining requests in the current period',
+          schema: {
+            type: 'integer'
+          }
+        },
+        'X-RateLimit-Reset': {
+          description: 'The time when the rate limit resets',
+          schema: {
+            type: 'string',
+            format: 'date-time'
+          }
+        },
+        'Retry-After': {
+          description: 'The number of seconds to wait before retrying',
+          schema: {
+            type: 'integer'
+          }
+        }
+      },
     security: [{ BearerAuth: [] }],
   },
   apis: ['./routes/*.js', './src/routes/*.js', './src/controllers/*.js'], // adjust to your structure
