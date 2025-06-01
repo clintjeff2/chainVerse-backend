@@ -1,4 +1,3 @@
-
 const express = require("express");
 const tutorRoutes = require("./tutorRoutes");
 const subscriptionPlanRoutes = require("./subscriptionPlanRoutes");
@@ -11,6 +10,7 @@ const authRoutes = require('./authRoute');
 const courseRoutes = require('./courseRoute');
 const rateLimitRoutes = require('./rateLimitRoutes');
 const courseUpdateRoutes = require('./courseUpdateRoutes');
+const recommendationRoutes = require('./recommendation.routes');
 
 const router = express.Router();
 
@@ -25,5 +25,6 @@ router.use('/auth', authRoutes);
 router.use('/courses', courseRoutes);
 router.use('/rate-limit', rateLimitRoutes);
 router.use('/', courseUpdateRoutes);
+router.use('/recommendation', recommendationRoutes);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
-const { Certificate } = require('../models/Certificate');
+const Certificate = require("../models/certificate");
 const { sendCertificateEmail } = require('../emailUtils');
 const path = require('path');
 const fs = require('fs');
