@@ -1,4 +1,4 @@
-const Certificate = require('../models/Certificate');
+const Certificate = require('../models/certificate-temp');
 const NftAchievement = require('../models/NftAchievement');
 
 exports.verifyCertificate = async (req, res) => {

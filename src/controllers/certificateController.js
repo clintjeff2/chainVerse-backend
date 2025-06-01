@@ -1,4 +1,4 @@
-const Certificate = require('../models/Certificate');
+const Certificate = require('../models/certificate-temp');
 const Course = require('../models/course');
 const Student = require('../models/student');
 //const ShareAnalytics = require('../models/ShareAnalytics');

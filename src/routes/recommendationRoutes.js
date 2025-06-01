@@ -46,7 +46,7 @@ const router = express.Router();
  */
 router.get(
   "/next-courses",
-  auth(),
+  auth.authenticate,
   recommendationController.getRecommendedCourses
 );
 

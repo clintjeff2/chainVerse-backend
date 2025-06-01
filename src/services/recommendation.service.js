@@ -1,6 +1,5 @@
 const RecommendationRules = require("./recommendation.rules");
-const { User } = require("../models");
-const ApiError = require("../utils/ApiError");
+const { User } = require("../models/course");
 
 class RecommendationService {
   /**
@@ -12,7 +11,7 @@ class RecommendationService {
     // Verify user exists
     const user = await User.findByPk(userId);
     if (!user) {
-      throw new ApiError(404, "User not found");
+      throw new (404, "User not found");
     }
 
     try {
@@ -34,7 +33,7 @@ class RecommendationService {
 
       return recommendations;
     } catch (error) {
-      throw new ApiError(
+      throw new (
         500,
         "Error generating recommendations: " + error.message
       );

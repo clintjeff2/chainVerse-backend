@@ -10,7 +10,7 @@ const authRoutes = require('./authRoute');
 const courseRoutes = require('./courseRoute');
 const rateLimitRoutes = require('./rateLimitRoutes');
 const courseUpdateRoutes = require('./courseUpdateRoutes');
-const recommendationRoutes = require('./recommendation.routes');
+const recommendationRoutes = require('./recommendationRoutes');
 
 const router = express.Router();
 

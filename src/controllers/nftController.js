@@ -1,5 +1,5 @@
 const NftAchievement = require('../models/NftAchievement');
-const Certificate = require('../models/Certificate');
+const Certificate = require('../models/certificate-temp');
 const { mintNFT, getMetadataUrl } = require('../utils/nftService');
 
 exports.mintNft = async (req, res) => {

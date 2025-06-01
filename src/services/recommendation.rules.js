@@ -1,4 +1,4 @@
-const { Course, UserProgress, QuizResult } = require('../models');
+const { Course} = require('../models/course');
 
 class RecommendationRules {
     /**
@@ -10,16 +10,16 @@ class RecommendationRules {
         const recommendations = [];
         
         // Get user's course progress
-        const userProgress = await UserProgress.findAll({
-            where: { userId },
-            include: [{ model: Course }]
-        });
+        // const userProgress = await UserProgress.findAll({
+        //     where: { userId },
+        //     include: [{ model: Course }]
+        // });
 
-        // Get user's quiz results
-        const quizResults = await QuizResult.findAll({
-            where: { userId },
-            include: [{ model: Course }]
-        });
+        // // Get user's quiz results
+        // const quizResults = await QuizResult.findAll({
+        //     where: { userId },
+        //     include: [{ model: Course }]
+        // });
 
         // Rule 1: If user completes a course, recommend the next course in sequence
         const completedCourses = userProgress.filter(progress => progress.completed);
