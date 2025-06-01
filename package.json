@@ -96,11 +96,17 @@
 
 		"pdfkit": "^0.17.0",
 
+		"pg": "^8.16.0",
+
+		"pg-hstore": "^2.3.4",
+
 		"qrcode": "^1.5.4",
 
 		"redis": "^4.7.1",
 
 		"sanitize-html": "^2.17.0",
+
+		"sequelize": "^6.37.7",
 
 		"socket.io": "^4.8.1",
 
