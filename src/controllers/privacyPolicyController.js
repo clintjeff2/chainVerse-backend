@@ -1,4 +1,4 @@
-const PrivacyPolicy = require('../models/PrivacyPolicy');
+const PrivacyPolicy = require('../models/privacyPolicy');
 const { sanitizeHtmlContent } = require('../utils/sanitizeHtmlContent'); // Corrected import
 
 // Create Privacy Policy

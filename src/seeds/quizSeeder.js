@@ -1,11 +1,8 @@
 const mongoose = require('mongoose');
-const Quiz = require('../models/Quiz.js'); // Keep this path intact
+const Quiz = require('../models/Quiz'); // Ensure this path is correct
 const { v4: uuidv4 } = require('uuid');
-const dotenv = require('dotenv');
-
-dotenv.config();
-
-// Example data
+require('dotenv').config();
+// Example data (customize as needed)
 const quizzes = [
   {
     _id: uuidv4(),
@@ -79,8 +76,5 @@ const seed = async () => {
   }
 };
 
-if (require.main === module) {
-  seed();
-}
-
+seed();
 module.exports = seed;

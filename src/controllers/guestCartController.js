@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const { v4: uuidv4 } = require('uuid');
-const GuestCart = require('../models/Guestcart.js');
+const GuestCart = require('../models/guestCart');
 
 // Generate a new guest cart with unique cartKey
 exports.createGuestCart = async (req, res) => {

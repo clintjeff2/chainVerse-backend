@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const privacyPolicyController = require('../controllers/PrivacyPolicyController');
+const privacyPolicyController = require('../controllers/privacyPolicyController');
 const validatePrivacyPolicy = require('../middlewares/validatePrivacyPolicy'); // Assuming it's a default export
 const isAdmin = require('../middlewares/admin');
 
