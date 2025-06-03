@@ -10,6 +10,7 @@
 		"test:watch": "jest --watch",
 		"test:coverage": "jest --coverage",
 		"email:worker": "node src/utils/emailWorker.js"
+
 	},
 	"repository": {
 		"type": "git",
@@ -38,6 +39,9 @@
 		"express-validator": "^7.2.1",
 		"helmet": "^8.1.0",
 		"ioredis": "^5.6.1",
+		"isomorphic-dompurify": "^2.25.0",
+
+
 		"joi": "^17.13.3",
 		"json2csv": "^6.0.0-alpha.2",
 		"jsonwebtoken": "^9.0.2",

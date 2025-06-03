@@ -1,5 +1,5 @@
 // controllers/careerController.js
-const Career = require('../models/Careers.js');
+const Career = require('../models/careers');
 
 const createCareer = async (req, res) => {
   try {
