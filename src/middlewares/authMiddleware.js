@@ -7,8 +7,8 @@ const handleError = (res, statusCode, message) => {
 
 const authMiddleware = async (req, res, next) => {
 	try {
-		const authHeader = req.header('Authorization');
-		if (!authHeader || !authHeader.startsWith('Bearer ')) {
+		const authHeader = req.headers.authorization || req.header('Authorization');
+		if (!authHeader?.startsWith('Bearer ')) {
 			return handleError(res, 401, 'Access denied, no token provided');
 		}
 		const token = authHeader.split(' ')[1];
@@ -41,11 +41,7 @@ const roleMiddleware = (requiredRole) => {
 	};
 };
 
-
-  
-
 module.exports = {
 	authMiddleware,
 	roleMiddleware
 };
-
