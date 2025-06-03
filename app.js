@@ -32,6 +32,7 @@ const studentCartRoutes = require('./src/routes/studentCartRoutes');
 
 const dbConnection = require("./src/config/database/connection");
 const router = require("./src/routes/index");
+const cartRoutes = require('./routes/cartRoutes');
 
 const app = express();
 dotEnv.config();
@@ -79,6 +80,7 @@ app.use('/api', nftRoutes);
 app.use('/api', careerRoutes);
 app.use('/api', guestCartRoutes);
 app.use('/api', studentCartRoutes);
+app.use('/api/cart', cartRoutes);
 
 app.get('/', (req, res) => {
     res.send('Welcome to ChainVerse Academy');
