@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { isAuthenticated, hasRole } = require('../middleware/auth');
 const StudentModel = require('../models/Student');
-const CourseModel = require('../models/Course');
+const CourseModel = require('../models/course');
 const CertificateModel = require('../models/Certificate');
 const StudyGroupModel = require('../models/StudyGroup');
 
