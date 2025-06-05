@@ -6,7 +6,9 @@ const helmet = require('helmet');
 const path = require('path');
 
 const { handleMulterErrors } = require('./src/middlewares/errorHandler');
-const { apiRateLimitMiddleware } = require('./src/middlewares/rateLimitMiddleware');
+const {
+	apiRateLimitMiddleware,
+} = require('./src/middlewares/rateLimitMiddleware');
 const rateLimitRoutes = require('./src/routes/rateLimitRoutes');
 
 const organizationRoutes = require('./src/routes/organization');
@@ -24,16 +26,16 @@ const adminFinancialAidRoutes = require('./src/routes/adminFinancialAidRoutes');
 const nftRoutes = require('./src/routes/nftRoute');
 const careerRoutes = require('./src/routes/careerRoutes');
 const { initScheduler } = require('./src/services/reportScheduler');
-const studyGroupRoutes = require("./src/routes/studyGroupRoutes");
+const studyGroupRoutes = require('./src/routes/studyGroupRoutes');
 const sessionRoutes = require('./src/routes/sessionRoute');
 const guestCartRoutes = require('./src/routes/guestCartRoute');
 const studentCartRoutes = require('./src/routes/studentCartRoutes');
 // const setupSwaggerDocs = require('./swagger');
 
-const dbConnection = require("./src/config/database/connection");
-const router = require("./src/routes/index");
-const quizRoutes = require("./src/routes/quizRoute"); 
-const cartRoutes = require('./routes/cartRoutes');
+const dbConnection = require('./src/config/database/connection');
+const router = require('./src/routes/index');
+// const quizRoutes = require("./src/routes/quizRoute");
+// const cartRoutes = require('./routes/cartRoutes');
 
 const app = express();
 dotEnv.config();
@@ -44,10 +46,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 // Static files
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Error middleware
 app.use(handleMulterErrors);
@@ -81,13 +83,13 @@ app.use('/api', nftRoutes);
 app.use('/api', careerRoutes);
 app.use('/api', guestCartRoutes);
 app.use('/api', studentCartRoutes);
-app.use('/api/cart', cartRoutes);
+// app.use('/api/cart', cartRoutes);
 
 // --- Add Quiz routes (RESTful path, e.g. /api/quizzes) ---
-app.use('/api/quizzes', quizRoutes);
+// app.use('/api/quizzes', quizRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Welcome to ChainVerse Academy');
+	res.send('Welcome to ChainVerse Academy');
 });
 
 // Swagger
@@ -95,18 +97,18 @@ app.get('/', (req, res) => {
 
 // 404 handler
 app.use((req, res, next) => {
-    const error = new Error("Not found");
-    error.status = 404;
-    next(error);
+	const error = new Error('Not found');
+	error.status = 404;
+	next(error);
 });
 
 // Global error handler
 app.use((error, req, res, next) => {
-    res.status(error.status || 500).send({
-        status: error.status || 500,
-        message: error.message,
-        body: {},
-    });
+	res.status(error.status || 500).send({
+		status: error.status || 500,
+		message: error.message,
+		body: {},
+	});
 });
 
 // Initialize report scheduler
