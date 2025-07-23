@@ -54,7 +54,7 @@ exports.authenticate = async (req, res, next) => {
 		// Check cache first
 		let user = userCache.get(decoded.id);
 		if (!user) {
-			user = await User.findById(decoded.id).select('+role -password').lean();
+			user = await User.findById(decoded.id).select('+role').lean();
 			if (!user) {
 				return handleError(res, 401, 'User not found');
 			}
