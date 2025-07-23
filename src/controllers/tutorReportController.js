@@ -28,7 +28,7 @@ const cacheResponse = (key, data, ttl=3600) => {
 
 const getTutorCoursesReport = async (req, res) => {
     try {
-        const tutorId = req.user.id; 
+        const tutorId = req.user._id; 
         const { interval } = req.query;
         
         // Validate interval
@@ -141,7 +141,7 @@ const getCourseLeaderboard = async (req, res) => {
 const getCourseReport = async (req, res) => {
     try {
         const courseId = req.params.id;
-        const tutorId = req.user.id;
+        const tutorId = req.user._id;
         const { format } = req.query;
 
         // Verify course belongs to tutor
