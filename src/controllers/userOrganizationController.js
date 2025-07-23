@@ -71,7 +71,7 @@ exports.registerUser = async (req, res) => {
 		);
 
 		// Trigger email verification
-		await sendEmail(email, user._id, 'ChainVerse: Verify Your Email');
+		// await sendEmail(email, user._id, 'ChainVerse: Verify Your Email');
 
 		res.status(201).json({
 			success: true,
@@ -100,10 +100,8 @@ exports.registerUser = async (req, res) => {
  */
 exports.getProfile = async (req, res) => {
 	try {
-		console.log(req.user);
 		// Get user details excluding password
-		const user = await User.findById(req.user.id).select('-password');
-		console.log(user, 'confused here');
+		const user = await User.findById(req.user._id).select('-password');
 
 		if (!user) {
 			return res
