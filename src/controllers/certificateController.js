@@ -73,7 +73,7 @@ exports.completeCourse = async (req, res) => {
 exports.getCertificate = async (req, res) => {
   try {
     const certificateId = req.params.certificateId || req.params.id;
-    const userId = req.user.id || req.user._id;
+    const userId = req.user._id;
 
     const certificate = await Certificate.findById(certificateId);
     if (!certificate) return res.status(404).json({ error: 'Certificate not found' });
@@ -153,7 +153,7 @@ exports.downloadAllCertificates = async (req, res) => {
 exports.generatePublicLink = async (req, res) => {
   try {
     const { certificateId } = req.params;
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     const certificate = await Certificate.findById(certificateId);
     if (!certificate) return res.status(404).json({ error: 'Certificate not found' });
@@ -188,7 +188,7 @@ exports.generatePublicLink = async (req, res) => {
 exports.getShareMetadata = async (req, res) => {
   try {
     const { certificateId } = req.params;
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     const certificate = await Certificate.findById(certificateId);
     if (!certificate) return res.status(404).json({ error: 'Certificate not found' });
@@ -231,7 +231,7 @@ exports.trackShare = async (req, res) => {
   try {
     const { certificateId } = req.params;
     const { platform } = req.body;
-    const userId = req.user.id;
+    const userId = req.user._id;
 
     if (!platform) return res.status(400).json({ error: 'Platform is required' });
 
