@@ -4,7 +4,7 @@ exports.submitReport = async (req, res) => {
     try {
         const { contentId, contentType, reason, description } = req.body;
 
-        const reportedBy = req.user.id;
+        const reportedBy = req.user._id;
 
         const newReport = new ReportAbuse({
             contentId,
