@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 
 const enable2FA = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user._id;
     const user = await User.findById(userId);
 
     if (!user) {
@@ -34,7 +34,7 @@ const verify2FA = async (req, res) => {
     if (!code) {
       return res.status(400).json({ message: "Code is required." });
     }
-    const userId = req.user.id;
+    const userId = req.user._id;
     const user = await User.findById(userId);
 
     const verified = speakeasy.totp.verify({
@@ -62,7 +62,7 @@ const disable2FA = async (req, res) => {
     if (!password) {
       return res.status(400).json({ message: "Password is required." });
     }
-    const userId = req.user.id;
+    const userId = req.user._id;
     const user = await User.findById(userId);
 
     if (!user) {
