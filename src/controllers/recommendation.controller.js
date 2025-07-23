@@ -4,7 +4,7 @@ const RecommendationService = require("../services/recommendation.service");
  * Get recommended courses for the authenticated user
  */
 const getRecommendedCourses = async (req, res) => {
-  const userId = req.user.id; // Extracted from JWT by auth middleware
+  const userId = req.user._id; // Extracted from JWT by auth middleware
   const recommendations = await RecommendationService.getRecommendedCourses(
     userId
   );
