@@ -2,7 +2,7 @@ const cartService = require('../services/cartService');
 
 exports.mergeCart = async (req, res) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user._id;
     const guestCart = req.body.guestCart;
 
     const merged = await cartService.mergeGuestCart(userId, guestCart);
