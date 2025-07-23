@@ -85,7 +85,7 @@ exports.reviewApplication = async (req, res) => {
         await notificationService.sendApplicationDecisionNotification(application.userId, application);
 
         // Audit log
-        await logAudit(req.user.id, `Reviewed application ${id} with status: ${status}`);
+        await logAudit(req.user._id, `Reviewed application ${id} with status: ${status}`);
 
         res.json({
             message: `Application ${status.toLowerCase()} successfully.`,
