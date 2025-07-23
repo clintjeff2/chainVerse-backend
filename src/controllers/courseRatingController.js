@@ -10,7 +10,7 @@ const mongoose = require('mongoose');
  */
 exports.submitRating = async (req, res) => {
   const { id } = req.params;
-  const studentId = req.user.id;
+  const studentId = req.user._id;
 
   try {
     // Validate input
@@ -149,7 +149,7 @@ exports.getCourseRatings = async (req, res) => {
  */
 exports.getMyRating = async (req, res) => {
   const { id } = req.params;
-  const studentId = req.user.id;
+  const studentId = req.user._id;
 
   try {
     // Check if course exists
@@ -189,7 +189,7 @@ exports.getMyRating = async (req, res) => {
  */
 exports.updateRating = async (req, res) => {
   const { id } = req.params;
-  const studentId = req.user.id;
+  const studentId = req.user._id;
 
   try {
     // Validate input
@@ -264,7 +264,7 @@ exports.updateRating = async (req, res) => {
  */
 exports.deleteRating = async (req, res) => {
   const { id } = req.params;
-  const studentId = req.user.id;
+  const studentId = req.user._id;
 
   try {
     // Check if course exists
